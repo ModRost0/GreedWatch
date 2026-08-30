@@ -1,13 +1,13 @@
-// src/app/search/page.jsx - Fixed with instant content
+// src/app/search/page.jsx - Fixed with Suspense
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import { getPopularMovies, getPopularTv } from '@/lib/api';
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
   
@@ -19,13 +19,11 @@ export default function SearchPage() {
   const [popularTv, setPopularTv] = useState([]);
   const debounceRef = useRef(null);
   
-  // Load popular content immediately
   useEffect(() => {
     getPopularMovies().then(setPopularMovies).catch(() => {});
     getPopularTv().then(setPopularTv).catch(() => {});
   }, []);
   
-  // Auto-search if query from homepage
   useEffect(() => {
     if (initialQuery) {
       performSearch(initialQuery);
@@ -80,7 +78,6 @@ export default function SearchPage() {
       <Header />
       
       <div style={{ maxWidth: '800px', margin: '30px auto', padding: '0 20px' }}>
-        {/* Search Input */}
         <div style={{ display: 'flex', gap: '10px', marginBottom: '30px' }}>
           <input
             type="text"
@@ -101,17 +98,13 @@ export default function SearchPage() {
           />
         </div>
         
-        {/* Loading indicator */}
         {loading && (
           <p style={{ textAlign: 'center', color: '#999' }}>Searching...</p>
         )}
         
-        {/* Search Results */}
         {!loading && results.length > 0 && (
           <div>
-            <p style={{ color: '#999', marginBottom: '15px' }}>
-              {results.length} results
-            </p>
+            <p style={{ color: '#999', marginBottom: '15px' }}>{results.length} results</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '15px' }}>
               {results.map(item => {
                 const title = item.title || item.name || 'Unknown';
@@ -141,10 +134,8 @@ export default function SearchPage() {
           </div>
         )}
         
-        {/* Show popular content when no search */}
         {!loading && results.length === 0 && (
           <div>
-            {/* Popular Movies */}
             {popularMovies.length > 0 && (
               <section className="shelf">
                 <h2 style={{ color: '#4caf50', marginBottom: '15px' }}>Popular Movies</h2>
@@ -170,7 +161,6 @@ export default function SearchPage() {
               </section>
             )}
             
-            {/* Popular TV */}
             {popularTv.length > 0 && (
               <section className="shelf">
                 <h2 style={{ color: '#4caf50', marginBottom: '15px' }}>Popular TV Shows</h2>
@@ -199,5 +189,18 @@ export default function SearchPage() {
         )}
       </div>
     </main>
+  );
+}
+
+// Wrap with Suspense
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ minHeight: '100vh', background: '#0a0a0a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="spinner"></div>
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   );
 }
