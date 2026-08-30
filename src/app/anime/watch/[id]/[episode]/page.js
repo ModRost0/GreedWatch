@@ -1,4 +1,4 @@
-// src/app/anime/watch/[id]/[episode]/page.jsx
+// src/app/anime/watch/[id]/[episode]/page.jsx - MegaVid as default server
 'use client';
 
 import { useState, useEffect, Suspense, useRef, useCallback } from 'react';
@@ -18,25 +18,25 @@ const ANILIST_API = 'https://graphql.anilist.co';
 // SERVER CONFIGURATIONS
 // ============================================
 const SERVERS = {
-  anixo: {
-    id: 'anixo',
-    name: 'Server 1',
-    icon: '🌐',
-    requiresSdk: true,
-    sdkUrl: 'https://anixo.buzz/embed-sdk.js',
-    buildUrl: (animeId, episode, audio) => 
-      `https://anixo.buzz/embed/ani/${animeId}/${episode}/${audio}?color=%234caf50`,
-    supportsAudio: ['sub', 'dub'],
-  },
   megavid: {
     id: 'megavid',
-    name: 'Server 2',
+    name: 'Server 1',
     icon: '🚀',
     requiresSdk: false,
     buildUrl: (animeId, episode, audio) => {
       const audioParam = audio === 'dub' ? 'dub' : 'sub';
       return `https://megavid.buzz/ani/${animeId}/${episode}/${audioParam}?color=%234caf50&autoplay=true`;
     },
+    supportsAudio: ['sub', 'dub'],
+  },
+  anixo: {
+    id: 'anixo',
+    name: 'Server 2',
+    icon: '🌐',
+    requiresSdk: true,
+    sdkUrl: 'https://anixo.buzz/embed-sdk.js',
+    buildUrl: (animeId, episode, audio) => 
+      `https://anixo.buzz/embed/ani/${animeId}/${episode}/${audio}?color=%234caf50`,
     supportsAudio: ['sub', 'dub'],
   },
 };
@@ -151,7 +151,7 @@ function AnimeWatchContent() {
   const [showFullSynopsis, setShowFullSynopsis] = useState(false);
   const [currentEpisode, setCurrentEpisode] = useState(episodeNumber);
   const [currentAudio, setCurrentAudio] = useState('sub');
-  const [currentServer, setCurrentServer] = useState('anixo');
+  const [currentServer, setCurrentServer] = useState('megavid'); // DEFAULT: MegaVid
   const [playerLoading, setPlayerLoading] = useState(true);
   const [playerError, setPlayerError] = useState(false);
   const [iframeKey, setIframeKey] = useState(0);
