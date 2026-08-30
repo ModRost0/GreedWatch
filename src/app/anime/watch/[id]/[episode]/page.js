@@ -1,4 +1,4 @@
-// src/app/anime/watch/[id]/[episode]/page.jsx - MegaVid as default server
+// src/app/anime/watch/[id]/[episode]/page.jsx - Full with logging, MegaVid default
 'use client';
 
 import { useState, useEffect, Suspense, useRef, useCallback } from 'react';
@@ -25,7 +25,9 @@ const SERVERS = {
     requiresSdk: false,
     buildUrl: (animeId, episode, audio) => {
       const audioParam = audio === 'dub' ? 'dub' : 'sub';
-      return `https://megavid.buzz/ani/${animeId}/${episode}/${audioParam}?color=%234caf50&autoplay=true`;
+      const url = `https://megavid.buzz/ani/${animeId}/${episode}/${audioParam}?color=%234caf50&autoplay=true`;
+      console.log('🔧 [MegaVid] URL:', url);
+      return url;
     },
     supportsAudio: ['sub', 'dub'],
   },
@@ -35,8 +37,12 @@ const SERVERS = {
     icon: '🌐',
     requiresSdk: true,
     sdkUrl: 'https://anixo.buzz/embed-sdk.js',
-    buildUrl: (animeId, episode, audio) => 
-      `https://anixo.buzz/embed/ani/${animeId}/${episode}/${audio}?color=%234caf50`,
+    buildUrl: (animeId, episode, audio) => {
+      const url = `https://anixo.buzz/embed/ani/${animeId}/${episode}/${audio}?color=%234caf50`;
+      console.log('🔧 [AniXo] URL:', url);
+      console.log('🔧 [AniXo] Note: May redirect to main site if embed not supported');
+      return url;
+    },
     supportsAudio: ['sub', 'dub'],
   },
 };
@@ -151,7 +157,7 @@ function AnimeWatchContent() {
   const [showFullSynopsis, setShowFullSynopsis] = useState(false);
   const [currentEpisode, setCurrentEpisode] = useState(episodeNumber);
   const [currentAudio, setCurrentAudio] = useState('sub');
-  const [currentServer, setCurrentServer] = useState('megavid'); // DEFAULT: MegaVid
+  const [currentServer, setCurrentServer] = useState('megavid');
   const [playerLoading, setPlayerLoading] = useState(true);
   const [playerError, setPlayerError] = useState(false);
   const [iframeKey, setIframeKey] = useState(0);
@@ -159,28 +165,22 @@ function AnimeWatchContent() {
   
   const playerRef = useRef(null);
 
-  // ============================================
-  // Get available servers based on audio
-  // ============================================
+  console.log('🎬 [Watch] Mounted - Anime:', animeId, 'EP:', episodeNumber);
+
   const getAvailableServers = useCallback(() => {
     return Object.values(SERVERS).filter(server => 
       server.supportsAudio.includes(currentAudio)
     );
   }, [currentAudio]);
 
-  // ============================================
-  // Build embed URL for current server
-  // ============================================
   const getEmbedUrl = useCallback(() => {
     const server = SERVERS[currentServer];
     if (!server) return '';
     return server.buildUrl(animeId, currentEpisode, currentAudio);
   }, [animeId, currentEpisode, currentAudio, currentServer]);
 
-  // ============================================
-  // Handle server change
-  // ============================================
   const handleServerChange = (serverId) => {
+    console.log('🔄 [Server] Switching to:', serverId);
     if (serverId === currentServer) return;
     setCurrentServer(serverId);
     setPlayerLoading(true);
@@ -188,10 +188,8 @@ function AnimeWatchContent() {
     setIframeKey(prev => prev + 1);
   };
 
-  // ============================================
-  // Load anime data
-  // ============================================
   useEffect(() => {
+    console.log('📡 [Data] Loading anime data...');
     if (animeId) {
       loadAnimeData();
       checkFavorite();
@@ -232,10 +230,14 @@ function AnimeWatchContent() {
         body: JSON.stringify({ query, variables: { id: Number(animeId) } }),
       });
       
+      console.log('📡 [Data] AniList status:', response.status);
+      
       const data = await response.json();
       const media = data?.data?.Media;
       
       if (media) {
+        console.log('✅ [Data] Found:', media.title?.english || media.title?.romaji);
+        
         setAnimeInfo({
           id: String(media.id),
           title: media.title?.english || media.title?.romaji || 'Unknown',
@@ -259,6 +261,7 @@ function AnimeWatchContent() {
         
         if (media.status === 'FINISHED' && media.episodes) {
           episodeList = Array.from({ length: media.episodes }, (_, i) => i + 1);
+          console.log('📺 [Episodes] FINISHED -', media.episodes, 'eps');
         } else {
           const airedNodes = (media.airingSchedule?.nodes || [])
             .filter(node => node.airingAt && node.airingAt <= now);
@@ -267,6 +270,7 @@ function AnimeWatchContent() {
           if (airedNumbers.length > 0) {
             const maxAired = Math.max(...airedNumbers);
             episodeList = Array.from({ length: maxAired }, (_, i) => i + 1);
+            console.log('📺 [Episodes] Aired:', maxAired);
           } else if (media.nextAiringEpisode?.episode > 1) {
             episodeList = Array.from({ length: media.nextAiringEpisode.episode - 1 }, (_, i) => i + 1);
           } else {
@@ -275,10 +279,11 @@ function AnimeWatchContent() {
         }
         
         setAiredEpisodes(episodeList);
+        console.log('✅ [Episodes] Total:', episodeList.length);
       }
       
     } catch (error) {
-      console.error('Failed to load anime');
+      console.error('❌ [Data] Error:', error.message);
     } finally {
       setIsLoading(false);
     }
@@ -320,9 +325,6 @@ function AnimeWatchContent() {
     }
   }
 
-  // ============================================
-  // Favorites
-  // ============================================
   async function checkFavorite() {
     if (!user) return;
     try {
@@ -360,9 +362,6 @@ function AnimeWatchContent() {
     } catch (error) {}
   }
 
-  // ============================================
-  // Track watch
-  // ============================================
   async function trackWatch() {
     if (!animeInfo?.title || hasTrackedWatch) return;
     setHasTrackedWatch(true);
@@ -394,10 +393,8 @@ function AnimeWatchContent() {
     } catch (error) {}
   }
 
-  // ============================================
-  // Episode/audio handlers
-  // ============================================
   function handleEpisodeChange(newEpisode) {
+    console.log('📺 [Episode] Changing to:', newEpisode);
     setCurrentEpisode(newEpisode);
     setHasTrackedWatch(false);
     setPlayerLoading(true);
@@ -408,6 +405,7 @@ function AnimeWatchContent() {
   }
 
   function handleAudioChange(audio) {
+    console.log('🔊 [Audio] Changing to:', audio);
     setCurrentAudio(audio);
     setPlayerLoading(true);
     setPlayerError(false);
@@ -418,9 +416,6 @@ function AnimeWatchContent() {
     }
   }
 
-  // ============================================
-  // Track watch on play
-  // ============================================
   useEffect(() => {
     if (!playerLoading && !playerError) {
       const timer = setTimeout(() => trackWatch(), 5000);
@@ -428,22 +423,14 @@ function AnimeWatchContent() {
     }
   }, [playerLoading, playerError, currentEpisode]);
 
-  // ============================================
-  // Handle SDK load for AniXo
-  // ============================================
   const handleSdkLoad = () => {
+    console.log('✅ [SDK] AniXo SDK loaded');
     setSdkLoaded(true);
   };
 
-  // ============================================
-  // Check if current server needs SDK
-  // ============================================
   const currentServerConfig = SERVERS[currentServer];
   const needsSdk = currentServerConfig?.requiresSdk || false;
 
-  // ============================================
-  // Format time until next episode
-  // ============================================
   const getTimeUntilNext = () => {
     if (!animeInfo?.nextAiring?.airingAt) return null;
     const now = Math.floor(Date.now() / 1000);
@@ -455,9 +442,6 @@ function AnimeWatchContent() {
     return `${days}d ${hours}h`;
   };
 
-  // ============================================
-  // Render
-  // ============================================
   if (isLoading) {
     return (
       <div className={styles.watchPage}>
@@ -482,7 +466,7 @@ function AnimeWatchContent() {
           strategy="afterInteractive"
           onLoad={handleSdkLoad}
           onError={() => {
-            console.warn('AniXo SDK failed to load');
+            console.log('❌ [SDK] AniXo SDK failed');
             setSdkLoaded(true);
           }}
         />
@@ -528,10 +512,12 @@ function AnimeWatchContent() {
               scrolling="no"
               frameBorder="0"
               onLoad={() => {
+                console.log('✅ [Player] Iframe loaded');
                 setPlayerLoading(false);
                 setPlayerError(false);
               }}
               onError={() => {
+                console.log('❌ [Player] Iframe error for:', currentServer);
                 setPlayerLoading(false);
                 setPlayerError(true);
               }}
@@ -544,7 +530,6 @@ function AnimeWatchContent() {
             />
           </div>
           
-          {/* ====== AUDIO SELECTOR ====== */}
           <div className={styles.sourceSelector}>
             <span>Audio:</span>
             <button
@@ -561,7 +546,6 @@ function AnimeWatchContent() {
             </button>
           </div>
           
-          {/* ====== SERVER SELECTOR ====== */}
           <div className={styles.serverSelector}>
             <span className={styles.serverLabel}>Server:</span>
             <div className={styles.serverButtons}>
@@ -578,12 +562,13 @@ function AnimeWatchContent() {
             </div>
           </div>
           
-          {/* ====== EPISODE LIST ====== */}
           <div className={styles.episodesSection}>
             <div className={styles.episodesHeader}>
               <h3 className={styles.episodesTitle}>Episodes ({airedEpisodes.length} aired)</h3>
               {timeUntilNext && animeInfo?.status !== 'FINISHED' && (
-                <span className={styles.nextEpisodeBadge}>Next: Ep {animeInfo.nextAiring?.episode || airedEpisodes.length + 1} in {timeUntilNext}</span>
+                <span className={styles.nextEpisodeBadge}>
+                  Next: Ep {animeInfo.nextAiring?.episode || airedEpisodes.length + 1} in {timeUntilNext}
+                </span>
               )}
             </div>
             <div className={styles.animeEpisodesGrid}>
@@ -599,7 +584,6 @@ function AnimeWatchContent() {
             </div>
           </div>
           
-          {/* ====== EPISODE NAVIGATION ====== */}
           <div className={styles.episodeNavigation}>
             <button 
               className={styles.navButton} 
@@ -618,7 +602,6 @@ function AnimeWatchContent() {
             </button>
           </div>
           
-          {/* ====== MEDIA INFO ====== */}
           <div className={styles.mediaInfo}>
             <div className={styles.titleRow}>
               <h1>{animeInfo?.title || 'Unknown'}</h1>
@@ -666,7 +649,6 @@ function AnimeWatchContent() {
           />
         </div>
         
-        {/* ====== SIDEBAR ====== */}
         <div className={styles.sidebar}>
           {recommendations.length > 0 && (
             <div className={styles.sidebarSection}>
