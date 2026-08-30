@@ -830,3 +830,524 @@
   height: 100%;
   border: none;
 }
+/* Add to src/app/anime/watch/[id]/[episode]/page.module.css */
+
+/* Episode Range Selector */
+.rangeSelector {
+  margin: 15px 0;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  border-radius: 10px;
+}
+
+.rangeSlider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  outline: none;
+  margin: 10px 0;
+}
+
+.rangeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #4caf50;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  transition: all 0.2s ease;
+}
+
+.rangeSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.rangeSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #4caf50;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+}
+
+.rangeInputs {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.rangeInput {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rangeInput label {
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.rangeInput input {
+  width: 70px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.9rem;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.rangeInput input:focus {
+  border-color: #4caf50;
+}
+
+.rangeInput input::-webkit-inner-spin-button,
+.rangeInput input::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+.episodeSearch {
+  flex: 1;
+  min-width: 150px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.episodeSearch:focus {
+  border-color: #4caf50;
+}
+
+.episodeSearch::placeholder {
+  color: #666;
+}
+
+/* Episode Grid */
+.animeEpisodesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.animeEpisodesGrid::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Add to src/app/anime/watch/[id]/[episode]/page.module.css */
+
+/* Episode Range Selector */
+.rangeSelector {
+  margin: 15px 0;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  border-radius: 10px;
+}
+
+.rangeSlider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  outline: none;
+  margin: 10px 0;
+}
+
+.rangeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #4caf50;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  transition: all 0.2s ease;
+}
+
+.rangeSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.rangeSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #4caf50;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+}
+
+.rangeInputs {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.rangeInput {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rangeInput label {
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.rangeInput input {
+  width: 70px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.9rem;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.rangeInput input:focus {
+  border-color: #4caf50;
+}
+
+.rangeInput input::-webkit-inner-spin-button,
+.rangeInput input::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+.episodeSearch {
+  flex: 1;
+  min-width: 150px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.episodeSearch:focus {
+  border-color: #4caf50;
+}
+
+.episodeSearch::placeholder {
+  color: #666;
+}
+
+/* Episode Grid */
+.animeEpisodesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.animeEpisodesGrid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.animeEpisodesGrid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.animeEpisodesGrid::-webkit-scrollbar-thumb {
+  background: rgba(76, 175, 80, 0.5);
+  border-radius: 4px;
+}
+
+.animeEpisodesGrid::-webkit-scrollbar-thumb:hover {
+  background: rgba(76, 175, 80, 0.7);
+}
+
+.animeEpisodeCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.animeEpisodeCard:hover {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: #4caf50;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+}
+
+.activeEpisode {
+  background: rgba(76, 175, 80, 0.3);
+  border-color: #4caf50;
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.episodeNumber {
+  font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .animeEpisodesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 6px;
+  }
+  
+  .rangeInputs {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .episodeSearch {
+    width: 100%;
+    min-width: auto;
+  }
+}
+/* Season Selector */
+.seasonSelector {
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.seasonLabel {
+  display: block;
+  color: #999;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.seasonButtons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.seasonButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ccc;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.seasonButton:hover {
+  background: rgba(76, 175, 80, 0.1);
+  border-color: rgba(76, 175, 80, 0.3);
+  transform: translateY(-2px);
+}
+
+.activeSeason {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+.seasonRange {
+  font-size: 0.7rem;
+  color: #666;
+  font-weight: 400;
+}
+
+.activeSeason .seasonRange {
+  color: #4caf50;
+}
+
+/* Episode Search */
+/* Season Selector */
+.seasonSelector {
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.seasonLabel {
+  display: block;
+  color: #999;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.seasonButtons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.seasonButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ccc;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.seasonButton:hover {
+  background: rgba(76, 175, 80, 0.1);
+  border-color: rgba(76, 175, 80, 0.3);
+  transform: translateY(-2px);
+}
+
+.activeSeason {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+.seasonRange {
+  font-size: 0.7rem;
+  color: #666;
+  font-weight: 400;
+}
+
+.activeSeason .seasonRange {
+  color: #4caf50;
+}
+
+/* Episode Search */
+.episodeSearch {
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.episodeSearch:focus {
+  border-color: #4caf50;
+}
+
+.episodeSearch::placeholder {
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .seasonButtons {
+    gap: 6px;
+  }
+  
+  .seasonButton {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .seasonRange {
+    font-size: 0.65rem;
+  }
+}/* Sequel Card */
+.sequelCard {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.sequelCard:hover {
+  background: rgba(76, 175, 80, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.sequelPoster {
+  flex-shrink: 0;
+  width: 60px;
+  height: 85px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.sequelPoster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sequelInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sequelInfo h4 {
+  font-size: 0.9rem;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sequelFormat {
+  font-size: 0.75rem;
+  color: #4caf50;
+  font-weight: 600;
+  text-transform: uppercase;
+}

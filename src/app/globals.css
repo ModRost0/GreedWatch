@@ -1965,3 +1965,745 @@ h1 em {
     font-size: 14px;
   }
 }
+/* src/app/show/[id]/page.module.css */
+
+.main {
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+/* Not Found */
+.notFound {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.notFoundIcon {
+  font-size: 64px;
+}
+
+.notFoundTitle {
+  margin: 20px 0;
+}
+
+.backButton {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #4caf50;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.backButton:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+}
+
+/* Backdrop */
+.backdrop {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.backdropOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, #0a0a0a 100%);
+}
+
+/* Content Layout */
+.content {
+  max-width: 1100px;
+  margin: -100px auto 40px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 30px;
+  position: relative;
+}
+
+.contentNoBackdrop {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 30px;
+}
+
+/* Poster Section */
+.posterSection {
+  position: relative;
+}
+
+.poster {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.noPoster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  background: #1a1a1a;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+}
+
+.watchButton {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  padding: 12px;
+  background: #4caf50;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.watchButton:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+/* External Links */
+.externalLinks {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.imdbLink {
+  padding: 6px 12px;
+  background: rgba(245, 197, 24, 0.2);
+  color: #f5c518;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  flex: 1;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.imdbLink:hover {
+  background: rgba(245, 197, 24, 0.3);
+}
+
+.tmdbLink {
+  padding: 6px 12px;
+  background: rgba(1, 180, 228, 0.2);
+  color: #01b4e4;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  flex: 1;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.tmdbLink:hover {
+  background: rgba(1, 180, 228, 0.3);
+}
+
+/* Info Section */
+.infoSection {
+  min-width: 0;
+}
+
+.typeLabel {
+  color: #4caf50;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 2.2rem;
+  margin: 10px 0 5px;
+  line-height: 1.2;
+}
+
+.tagline {
+  color: #999;
+  font-style: italic;
+  margin: 0 0 10px;
+}
+
+.meta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.score {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+.genres {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.genreTag {
+  padding: 4px 12px;
+  background: rgba(76, 175, 80, 0.15);
+  color: #4caf50;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+}
+
+.genreTag:hover {
+  background: rgba(76, 175, 80, 0.25);
+}
+
+.overview {
+  color: #ccc;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* Sections */
+.section {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.sectionTitle {
+  color: #4caf50;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+/* Cast Section */
+.castGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+.castCard {
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.castCard:hover {
+  transform: translateY(-5px);
+}
+
+.castImage {
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 2/3;
+  background: #1a1a1a;
+}
+
+.castImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.castCard:hover .castImg {
+  transform: scale(1.05);
+}
+
+.castNoImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 40px;
+}
+
+.castName {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.castCharacter {
+  display: block;
+  font-size: 0.75rem;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Production Companies */
+.companiesContainer {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.companyCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #ccc;
+  transition: all 0.3s;
+}
+
+.companyCard:hover {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: #4caf50;
+  transform: translateY(-2px);
+}
+
+.companyLogo {
+  max-width: 60px;
+  max-height: 30px;
+  object-fit: contain;
+}
+
+.companyName {
+  font-size: 0.85rem;
+}
+
+/* Recommendations */
+.recommendationsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.recoCard {
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.3s;
+}
+
+.recoCard:hover {
+  transform: translateY(-5px);
+}
+
+.recoPoster {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 2/3;
+  background: #1a1a1a;
+}
+
+.recoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.recoCard:hover .recoImg {
+  transform: scale(1.05);
+}
+
+.recoNoPoster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 40px;
+}
+
+.recoScore {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  background: rgba(0,0,0,0.8);
+  color: #ffd700;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.recoTitle {
+  font-size: 0.9rem;
+  margin: 8px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recoYear {
+  font-size: 0.8rem;
+  color: #999;
+  margin: 2px 0 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .backdrop {
+    height: 250px;
+  }
+  
+  .content,
+  .contentNoBackdrop {
+    grid-template-columns: 1fr;
+    margin-top: -50px;
+    gap: 20px;
+  }
+  
+  .contentNoBackdrop {
+    margin-top: 20px;
+  }
+  
+  .poster {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  
+  .posterSection {
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .castGrid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  }
+  
+  .recommendationsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  
+  .companiesContainer {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .castGrid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 8px;
+  }
+  
+  .recommendationsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+  }
+  
+  .section {
+    padding: 0 15px;
+  }
+  
+  .content,
+  .contentNoBackdrop {
+    padding: 0 15px;
+  }
+}
+/* Add to your global stylesheet — replaces the old inline styles */
+
+.animeDetailPosterColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.animeExternalLinks {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.animeExternalLink {
+  flex: 1;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  text-align: center;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.animeExternalLink:hover,
+.animeExternalLink:focus-visible {
+  opacity: 0.8;
+}
+
+.animeExternalLinkAniList {
+  background: rgba(2, 169, 255, 0.2);
+  color: #02a9ff;
+}
+
+.animeExternalLinkMal {
+  background: rgba(46, 81, 162, 0.2);
+  color: #6e91d6;
+}
+
+.animeStudioLink {
+  color: #4caf50;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(76, 175, 80, 0.5);
+}
+
+.animeStudioLink:hover,
+.animeStudioLink:focus-visible {
+  border-bottom-style: solid;
+}
+
+.animeCharacterLink,
+.animeStaffLink {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  text-align: center;
+}
+
+.animeVoiceActorLink {
+  text-decoration: none;
+  color: #999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+.animeVoiceActorAvatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.animeVoiceActorNoAvatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.animeVoiceActorText {
+  display: flex;
+  flex-direction: column;
+}
+
+.animeVoiceActorName {
+  font-size: 0.8rem;
+}
+
+.animeVoiceActorRole {
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.animeGenres {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 12px 0;
+}
+
+/* Keyboard focus visibility (baseline a11y requirement) */
+.animeExternalLink:focus-visible,
+.animeStudioLink:focus-visible,
+.animeCharacterLink:focus-visible,
+.animeStaffLink:focus-visible,
+.animeVoiceActorLink:focus-visible {
+  outline: 2px solid #02a9ff;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animeExternalLink {
+    transition: none;
+  }
+}
+/* Season Count Badge */
+.seasonCount {
+  color: #4caf50;
+  font-weight: 600;
+  padding: 2px 8px;
+  background: rgba(76, 175, 80, 0.15);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+/* Season Selector */
+.seasonSelector {
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.seasonLabel {
+  display: block;
+  color: #999;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.seasonButtons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Season Count Badge */
+.seasonCount {
+  color: #4caf50;
+  font-weight: 600;
+  padding: 2px 8px;
+  background: rgba(76, 175, 80, 0.15);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+/* Season Selector */
+.seasonSelector {
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.seasonLabel {
+  display: block;
+  color: #999;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.seasonButtons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.seasonButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ccc;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.seasonButton:hover {
+  background: rgba(76, 175, 80, 0.1);
+  border-color: rgba(76, 175, 80, 0.3);
+  transform: translateY(-2px);
+}
+
+.activeSeason {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+.seasonButtonTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.seasonRange {
+  font-size: 0.7rem;
+  color: #666;
+  font-weight: 400;
+}
+
+.activeSeason .seasonRange {
+  color: #4caf50;
+}
+
+/* Episode Search */
+.episodeSearch {
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.episodeSearch:focus {
+  border-color: #4caf50;
+}
+
+.episodeSearch::placeholder {
+  color: #666;
+}
+
+/* Loading Episodes */
+.loadingEpisodes {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .seasonButtons {
+    gap: 6px;
+  }
+  
+  .seasonButton {
+    padding: 6px 12px;
+  }
+  
+  .seasonButtonTitle {
+    font-size: 0.8rem;
+  }
+  
+  .seasonRange {
+    font-size: 0.65rem;
+  }
+}
