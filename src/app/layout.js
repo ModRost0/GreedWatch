@@ -1,14 +1,20 @@
-import "./globals.css";
+// src/app/layout.jsx
+import './globals.css';
+import { AuthProvider } from '@/context/AuthContext';
 
 export const metadata = {
-  title: "Reelroom | Find your next favorite",
-  description: "A carefully curated TV and movie discovery room.",
+  title: 'Greed - Stream Movies & TV',
+  description: 'Free streaming platform',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }

@@ -1,0 +1,817 @@
+/* ====== PAGE CONTAINER ====== */
+.watchPage {
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #e0e0e0;
+}
+
+.watchContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .watchContent {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ====== PLAYER SECTION ====== */
+.playerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.videoPlayer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #0d0d0d;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #1a2a1a;
+}
+
+.playerIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: 2;
+}
+
+/* ====== BACK BUTTON ====== */
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #4caf50;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 8px 0;
+}
+
+.backButton:hover {
+  color: #66bb6a;
+}
+
+/* ====== LOADING PLAYER ====== */
+.loadingPlayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0d0d0d;
+  color: #e0e0e0;
+  z-index: 5;
+}
+
+.loadingPlayer .spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #1a2a1a;
+  border-top-color: #4caf50;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loadingPlayer p {
+  font-size: 14px;
+  color: #888;
+}
+
+/* ====== PLAYER ERROR ====== */
+.playerError {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0d0d0d;
+  color: #ff6b6b;
+  padding: 20px;
+  text-align: center;
+  z-index: 5;
+}
+
+.playerError span {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.playerError p {
+  font-size: 16px;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+/* ====== RETRY BUTTON ====== */
+.retryButton {
+  padding: 10px 32px;
+  border-radius: 8px;
+  border: none;
+  background: #4caf50;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.retryButton:hover {
+  background: #43a047;
+  transform: scale(1.02);
+}
+
+/* ====== AUDIO SELECTOR ====== */
+.sourceSelector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  flex-wrap: wrap;
+}
+
+.sourceSelector span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  min-width: 50px;
+}
+
+.sourceButton {
+  padding: 6px 18px;
+  border-radius: 20px;
+  border: 2px solid #1a2a1a;
+  background: transparent;
+  color: #888;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sourceButton:hover:not(:disabled) {
+  border-color: #4caf50;
+  color: #e0e0e0;
+}
+
+.sourceButton.activeSource {
+  border-color: #4caf50;
+  background: #4caf50;
+  color: #fff;
+}
+
+.sourceButton.disabledSource {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: #1a1a1a;
+  color: #555;
+}
+
+.sourceButton.disabledSource:hover {
+  border-color: #1a1a1a;
+  color: #555;
+}
+
+/* ====== SERVER SELECTOR ====== */
+.serverSelector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 0 8px 0;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.serverLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #888;
+  min-width: 50px;
+}
+
+.serverButtons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.serverButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 16px;
+  border: 1px solid #1a2a1a;
+  background: transparent;
+  color: #888;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.serverButton:hover {
+  border-color: #4caf50;
+  color: #e0e0e0;
+}
+
+.serverButton.activeServer {
+  border-color: #4caf50;
+  background: #1a2a1a;
+  color: #4caf50;
+}
+
+.serverIcon {
+  font-size: 13px;
+}
+
+/* ====== EPISODES SECTION ====== */
+.episodesSection {
+  background: #0d0d0d;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #1a2a1a;
+}
+
+.episodesHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  gap: 8px;
+}
+
+.episodesTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+.nextEpisodeBadge {
+  font-size: 12px;
+  color: #4caf50;
+  background: #1a2a1a;
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid #1a2a1a;
+}
+
+.animeEpisodesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 8px;
+}
+
+.animeEpisodeCard {
+  padding: 10px 8px;
+  border-radius: 8px;
+  border: 1px solid #1a2a1a;
+  background: transparent;
+  color: #888;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.animeEpisodeCard:hover {
+  border-color: #4caf50;
+  color: #e0e0e0;
+}
+
+.animeEpisodeCard.activeEpisode {
+  border-color: #4caf50;
+  background: #1a2a1a;
+  color: #4caf50;
+}
+
+.episodeNumber {
+  display: block;
+  font-size: 12px;
+}
+
+/* ====== EPISODE NAVIGATION ====== */
+.episodeNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.navButton {
+  padding: 8px 24px;
+  border-radius: 8px;
+  border: 1px solid #1a2a1a;
+  background: transparent;
+  color: #e0e0e0;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navButton:hover:not(:disabled) {
+  border-color: #4caf50;
+  background: #1a2a1a;
+  color: #4caf50;
+}
+
+.navButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.navInfo {
+  font-size: 14px;
+  color: #888;
+  font-weight: 500;
+}
+
+/* ====== MEDIA INFO ====== */
+.mediaInfo {
+  background: #0d0d0d;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #1a2a1a;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.titleRow h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+.year {
+  font-size: 13px;
+  color: #666;
+  background: #1a1a1a;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+.episodeCount {
+  font-size: 13px;
+  color: #666;
+  background: #1a1a1a;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+.statusBadge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 12px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statusBadge.releasing {
+  background: #1a2a1a;
+  color: #4caf50;
+  border: 1px solid #4caf50;
+}
+
+.statusBadge.finished {
+  background: #1a1a2a;
+  color: #6366f1;
+  border: 1px solid #6366f1;
+}
+
+.statusBadge.not_yet_released {
+  background: #2a1a1a;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+}
+
+.statusBadge.cancelled {
+  background: #2a1a1a;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+}
+
+.formatBadge {
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background: #1a1a1a;
+  color: #888;
+}
+
+.durationBadge {
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background: #1a1a1a;
+  color: #888;
+}
+
+.favoriteButton {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+  padding: 0 4px;
+}
+
+.favoriteButton:hover {
+  transform: scale(1.2);
+}
+
+.favoriteButton.isFavorite {
+  animation: heartBeat 0.3s ease;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+/* ====== MEDIA META ====== */
+.mediaMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.genres {
+  font-size: 13px;
+  color: #888;
+}
+
+.studios {
+  font-size: 13px;
+  color: #666;
+}
+
+/* ====== RATING ====== */
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.starsDisplay {
+  display: flex;
+  gap: 3px;
+}
+
+.starButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  padding: 0;
+}
+
+.starButton.active {
+  color: #ffd700;
+}
+
+.starButton:hover {
+  color: #ffd700;
+  transform: scale(1.1);
+}
+
+.ratingInfo {
+  font-size: 14px;
+  color: #888;
+}
+
+.tmdbRating {
+  color: #666;
+}
+
+.noRatings {
+  color: #555;
+  font-style: italic;
+}
+
+/* ====== SYNOPSIS ====== */
+.synopsis {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+.synopsisClamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.moreButton {
+  background: none;
+  border: none;
+  color: #4caf50;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.3s ease;
+}
+
+.moreButton:hover {
+  color: #66bb6a;
+}
+
+/* ====== SIDEBAR ====== */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebarSection {
+  background: #0d0d0d;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #1a2a1a;
+}
+
+.sidebarTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e0e0e0;
+  margin-bottom: 16px;
+}
+
+.recommendationList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recommendationCard {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background: transparent;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.recommendationCard:hover {
+  background: #1a1a1a;
+  border-color: #1a2a1a;
+}
+
+.recoPoster {
+  width: 60px;
+  height: 80px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.recoPoster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.noPoster {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background: #1a1a1a;
+  color: #333;
+}
+
+.recoInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.recoInfo h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e0e0e0;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recoInfo span {
+  font-size: 12px;
+  color: #888;
+}
+
+/* ====== LOADING CONTAINER ====== */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: #e0e0e0;
+}
+
+.loadingContainer .spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid #1a2a1a;
+  border-top-color: #4caf50;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 20px;
+}
+
+.loadingContainer p {
+  font-size: 16px;
+  color: #888;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .watchContent {
+    padding: 12px;
+    gap: 16px;
+  }
+  
+  .titleRow h1 {
+    font-size: 18px;
+  }
+  
+  .mediaInfo {
+    padding: 16px;
+  }
+  
+  .episodesSection {
+    padding: 16px;
+  }
+  
+  .animeEpisodesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  }
+  
+  .sourceButton {
+    padding: 4px 14px;
+    font-size: 12px;
+  }
+  
+  .navButton {
+    padding: 6px 16px;
+    font-size: 13px;
+  }
+
+  .episodesHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .serverSelector {
+    gap: 8px;
+  }
+  
+  .serverButton {
+    padding: 4px 12px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .episodeNavigation {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .navInfo {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+
+  .titleRow h1 {
+    font-size: 16px;
+  }
+  
+  .titleRow {
+    gap: 6px;
+  }
+  
+  .year, .episodeCount, .formatBadge, .durationBadge {
+    font-size: 10px;
+    padding: 1px 8px;
+  }
+  
+  .statusBadge {
+    font-size: 9px;
+    padding: 1px 8px;
+  }
+}
+/* ====== CONTROLS ROW (Audio + Subtitles) ====== */
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 4px 0;
+  flex-wrap: wrap;
+}
+
+/* ====== SUBTITLE TOGGLE ====== */
+.subtitleToggle {
+  display: flex;
+  align-items: center;
+}
+
+.subtitleButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 2px solid #1a2a1a;
+  background: transparent;
+  color: #888;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.subtitleButton:hover {
+  border-color: #4caf50;
+  color: #e0e0e0;
+}
+
+.subtitleButton.activeSubtitle {
+  border-color: #4caf50;
+  background: #1a2a1a;
+  color: #4caf50;
+}
+
+.subtitleIcon {
+  font-size: 16px;
+}
+
+/* ====== RESPONSIVE UPDATES ====== */
+@media (max-width: 768px) {
+  .controlsRow {
+    gap: 12px;
+  }
+  
+  .subtitleButton {
+    padding: 4px 12px;
+    font-size: 12px;
+  }
+  
+  .subtitleIcon {
+    font-size: 14px;
+  }
+}

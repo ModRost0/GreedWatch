@@ -1,23 +1,71 @@
+// src/app/page.jsx - Homepage with Continue Watching
 import Link from "next/link";
+import Header from "@/components/Header";
+import ContinueWatching from "@/components/ContinueWatching";
+import { getPopularMovies, getPopularTv, getTrending } from "@/lib/api";
 
-const picks = [
-  { title: "The Bear", meta: "Drama · 3 seasons", score: "9.1", color: "#b85838", mark: "BEAR" },
-  { title: "Severance", meta: "Mystery · 2 seasons", score: "8.7", color: "#a8b5a1", mark: "SEVER" },
-  { title: "Arcane", meta: "Animation · 2 seasons", score: "9.0", color: "#7361a9", mark: "ARCANE" },
-  { title: "The Last of Us", meta: "Drama · 2 seasons", score: "8.6", color: "#6e855a", mark: "TLOU" },
-];
+export const revalidate = 60;
 
-function Poster({ item }) {
-  return <div className="poster" style={{ "--poster": item.color }}><span>{item.mark}</span><i>{item.score}</i></div>;
-}
+export default async function HomePage() {
+  const [popularMovies, popularTv, trending] = await Promise.all([
+    getPopularMovies().catch(() => []),
+    getPopularTv().catch(() => []),
+    getTrending().catch(() => []),
+  ]);
 
-export default function Home() {
   return (
     <main className="siteShell">
-      <header className="nav"><Link className="wordmark" href="/">reel<span>room</span></Link><nav><Link href="/discover">Discover</Link><Link href="/popular">Popular</Link><Link href="/upcoming">Upcoming</Link></nav><Link className="navSearch" href="/search">⌕ <span>Search</span></Link></header>
-      <section className="hero"><div className="heroCopy"><p className="eyebrow">THE EDITOR&apos;S CUT / 01</p><h1>Find something<br /><em>worth watching.</em></h1><p className="heroText">A thoughtful place for the shows you love, the stories you missed, and the next obsession waiting around the corner.</p><Link className="button buttonLight" href="/discover">Explore the room <span>↗</span></Link></div><div className="heroArtwork"><div className="sun"></div><div className="heroLabel">THE<br />OTHER<br /><b>WORLD</b></div><div className="heroCaption">01 / 04<br /><span>THE LAST OF US</span></div></div></section>
-      <section className="section"><div className="sectionHead"><div><p className="eyebrow">A LITTLE INSPIRATION</p><h2>Picked for you</h2></div><Link className="textLink" href="/discover">See all <span>↗</span></Link></div><div className="posterGrid">{picks.map((item) => <Link href={`/show/${encodeURIComponent(item.title)}`} className="pick" key={item.title}><Poster item={item} /><h3>{item.title}</h3><p>{item.meta}</p></Link>)}</div></section>
-      <footer><span>reelroom / 2026</span><span>Good stories, better company.</span></footer>
-    </div>
+      <Header />
+      
+      <section className="listing">
+        <p className="eyebrow">THE GREED INDEX</p>
+        <h1>What&apos;s on<br /><em>your list?</em></h1>
+        
+        <form className="searchForm" action="/search">
+          <input name="q" placeholder="Search shows, movies, or genres" />
+          <button className="button buttonLight">Search ↗</button>
+        </form>
+
+        {/* Continue Watching - First section */}
+        <ContinueWatching />
+        
+        <Shelf title="🔥 Trending Now" items={trending} />
+        <Shelf title="Popular Movies" items={popularMovies} movie />
+        <Shelf title="Popular TV Shows" items={popularTv} />
+      </section>
+    </main>
+  );
+}
+
+function Shelf({ title, items, movie = false }) {
+  if (!items || items.length === 0) return null;
+  
+  return (
+    <section className="shelf">
+      <div className="shelfHead">
+        <h2>{title}</h2>
+        <Link href="/popular">View all ↗</Link>
+      </div>
+      <div className="catalogGrid">
+        {items.slice(0, 8).map(item => (
+          <Link 
+            key={item.id}
+            href={`/show/${item.id}?type=${movie ? 'movie' : (item.media_type || 'tv')}`}
+            className="catalogItem"
+          >
+            <div className="catalogPoster">
+              {item.poster_path ? (
+                <img src={`https://image.tmdb.org/t/p/w342${item.poster_path}`} alt={item.title || item.name} loading="lazy" />
+              ) : (
+                <div className="noPoster">🎬</div>
+              )}
+              <span className="cardScore">★ {item.vote_average?.toFixed(1) || "—"}</span>
+            </div>
+            <h3>{item.title || item.name}</h3>
+            <p>{(item.release_date || item.first_air_date || '').slice(0, 4)}</p>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }

@@ -1,0 +1,757 @@
+/* src/app/profile/page.module.css */
+
+.profilePage {
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Not Logged In */
+.notLoggedIn {
+  max-width: 500px;
+  margin: 100px auto;
+  text-align: center;
+  padding: 50px;
+  background: #1a1a1a;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 16px;
+}
+
+.notLoggedInIcon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.notLoggedIn h1 {
+  font-size: 2rem;
+  margin: 0 0 15px 0;
+  color: #4caf50;
+}
+
+.notLoggedIn p {
+  color: #999;
+  margin: 0 0 25px 0;
+}
+
+.signInButton {
+  display: inline-block;
+  padding: 12px 30px;
+  background: #4caf50;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.signInButton:hover {
+  background: #66bb6a;
+  transform: translateY(-2px);
+}
+
+/* Profile Container */
+.profileContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+/* Cover Banner */
+.coverBanner {
+  height: 200px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 50%, #4caf50 100%);
+  border-radius: 0 0 20px 20px;
+  margin-bottom: -50px;
+}
+
+/* Profile Header */
+.profileHeader {
+  display: flex;
+  gap: 30px;
+  padding: 0 30px 30px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.avatarSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #4caf50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  border: 4px solid #0a0a0a;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.editProfileButton {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.editProfileButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.profileInfo {
+  flex: 1;
+  min-width: 250px;
+}
+
+.profileName {
+  font-size: 2rem;
+  margin: 0 0 5px 0;
+  font-weight: 700;
+}
+
+.username {
+  color: #4caf50;
+  font-size: 0.9rem;
+  margin: 0 0 5px 0;
+}
+
+.profileEmail {
+  color: #666;
+  font-size: 0.85rem;
+  margin: 0 0 15px 0;
+}
+
+.profileBio {
+  color: #ccc;
+  font-size: 0.95rem;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+  max-width: 500px;
+}
+
+.profileStats {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.statNumber {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #4caf50;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+/* Tabs */
+.tabsContainer {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 30px;
+}
+
+.tabs {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 15px 20px;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: #fff;
+}
+
+.activeTab {
+  color: #4caf50;
+  border-bottom-color: #4caf50;
+  font-weight: 600;
+}
+
+/* Tab Content */
+.tabContent {
+  min-height: 400px;
+}
+
+/* Section Header */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 0 0 20px 0;
+}
+
+.addButton {
+  padding: 8px 16px;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+}
+
+.addButton:hover {
+  background: #66bb6a;
+}
+
+.clearButton {
+  padding: 8px 16px;
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+}
+
+.clearButton:hover {
+  background: rgba(255, 0, 0, 0.2);
+}
+
+/* Overview */
+.overviewGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.overviewSection {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.overviewSection h3 {
+  color: #4caf50;
+  margin: 0 0 15px 0;
+  font-size: 1.1rem;
+}
+
+.activityItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  color: #ccc;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.activityItem:hover {
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.activityPoster {
+  width: 40px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.activityInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.activityTitle {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.activityMeta {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.playlistItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.playlistIcon {
+  font-size: 1.5rem;
+}
+
+.playlistInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.playlistName {
+  font-weight: 500;
+  color: #fff;
+}
+
+.playlistDesc {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.deleteButton:hover {
+  transform: scale(1.2);
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  gap: 15px;
+  color: #666;
+}
+
+.emptyState span {
+  font-size: 48px;
+}
+
+.emptyState p {
+  font-size: 0.95rem;
+}
+
+/* Media Grid */
+.mediaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.mediaCard {
+  position: relative;
+  transition: all 0.3s;
+}
+
+.mediaCard:hover {
+  transform: translateY(-5px);
+}
+
+.mediaCard img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.mediaCard h4 {
+  margin: 10px 0 0;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.noImage {
+  width: 100%;
+  aspect-ratio: 2/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  background: #1a1a1a;
+  border-radius: 8px;
+}
+
+.removeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.mediaCard:hover .removeButton {
+  opacity: 1;
+}
+
+/* History */
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.historyItem:hover {
+  background: rgba(76, 175, 80, 0.1);
+  transform: translateX(5px);
+}
+
+.historyItem img {
+  width: 50px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.historyInfo h4 {
+  margin: 0 0 5px 0;
+  font-size: 0.95rem;
+}
+
+.historyInfo p {
+  margin: 0;
+  color: #999;
+  font-size: 0.8rem;
+}
+
+/* Playlists */
+.playlistsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.playlistCard {
+  padding: 20px;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.playlistCard:hover {
+  border-color: rgba(76, 175, 80, 0.3);
+}
+
+.playlistCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.playlistCardIcon {
+  font-size: 2rem;
+}
+
+.playlistCard h4 {
+  margin: 0 0 10px 0;
+  color: #fff;
+}
+
+.playlistCard p {
+  margin: 0 0 15px 0;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.playlistDate {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* Ratings */
+.ratingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ratingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #1a1a1a;
+  border-radius: 8px;
+}
+
+.ratingInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ratingTitle {
+  font-weight: 500;
+}
+
+.ratingDate {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.stars {
+  color: #ffd700;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+  padding: 20px;
+}
+
+.modal {
+  background: #1a1a1a;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modalHeader h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.closeButton:hover {
+  color: #fff;
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  color: #ccc;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.3s;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
+}
+
+.formGroup textarea {
+  resize: vertical;
+}
+
+.modalActions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.cancelButton {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.cancelButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.saveButton {
+  padding: 10px 20px;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.saveButton:hover {
+  background: #66bb6a;
+  transform: translateY(-2px);
+}
+
+/* Loading */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px;
+  gap: 15px;
+  color: #666;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #333;
+  border-top-color: #4caf50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profileHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .overviewGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .profileStats {
+    justify-content: center;
+  }
+  
+  .mediaGrid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+  }
+  
+  .tabs {
+    justify-content: flex-start;
+  }
+  
+  .tab {
+    padding: 12px 15px;
+    font-size: 0.85rem;
+  }
+  
+  .modal {
+    padding: 20px;
+  }
+}
